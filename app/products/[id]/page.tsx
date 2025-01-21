@@ -123,7 +123,7 @@ const builder = imageUrlBuilder(client);
       })
     }
     const addToWishlist = () => {
-      let heart = document.getElementsByClassName("heart") as HTMLCollectionOf<HTMLElement>;
+      const heart = document.getElementsByClassName("heart") as HTMLCollectionOf<HTMLElement>;
       heart[0].style.backgroundColor = "rgb(251 207 232)"
       const savedList = JSON.parse(localStorage.getItem("wishList") || "[]");
   

@@ -4,7 +4,7 @@ import Footer2 from "@/components/footer2";
 import { useToast } from "@/hooks/use-toast";
 import client from "../sanity";
 
-const page = () => {
+const Page = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -37,7 +37,7 @@ const page = () => {
   // Submit form data to Sanity
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let formErrors: any = {};
+    const formErrors: any = {};
 
     if (!validateEmail(formData.email))
       formErrors.email = "Invalid email format.";
@@ -134,4 +134,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

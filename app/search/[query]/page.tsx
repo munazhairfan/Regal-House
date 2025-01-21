@@ -64,7 +64,7 @@ const SearchResults = () => {
 
   return (
     <div className="font-poppins">
-      <p className="text-xl text-hackathon text-center mt-3">Search Results for: "{query}"</p>
+      <p className="text-xl text-hackathon text-center mt-3">Search Results for: &quot;{query}&quot;</p>
       <div className='flex justify-center'>
               <div className='grid xs:grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 py-6'>
         {products.length > 0 ? (

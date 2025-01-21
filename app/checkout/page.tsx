@@ -64,7 +64,7 @@ const CheckoutForm = () => {
   // Submit form data to Sanity
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let formErrors: any = {};
+    const formErrors: any = {};
 
     if (!formData.name) formErrors.name = "Full Name is required.";
     if (!validateEmail(formData.email))
@@ -263,7 +263,7 @@ const CheckoutForm = () => {
               htmlFor="cardName"
               className="block text-lg font-medium text-gray-700"
             >
-              Cardholder's Name
+              Cardholder&apos;s Name
             </label>
             <input
               type="text"

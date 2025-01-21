@@ -14,7 +14,7 @@ type CartProduct = {
 };
 
 
-const page = () => {
+const Page = () => {
   const [cart, setCart] = useState<CartProduct[]>([]);
 
   useEffect(() => {
@@ -182,4 +182,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

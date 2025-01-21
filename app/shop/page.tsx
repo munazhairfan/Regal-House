@@ -29,7 +29,7 @@ export interface Product {
   stockLevel?: number;
 }
 
-const page = () => {
+const Page = () => {
 
   const productsPerPage = 15; // Number of products per page
   const [currentPage, setCurrentPage] = useState(1); // Current page
@@ -140,4 +140,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
