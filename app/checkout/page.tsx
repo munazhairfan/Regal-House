@@ -3,18 +3,6 @@ import React, { useState } from "react";
 import client from "../sanity"; // Import the sanity client
 import { useToast } from "@/hooks/use-toast";
 
-interface FormData {
-  name: string;
-  email: string;
-  address: string;
-  city: string;
-  zipcode: string;
-  country: string;
-  cardName: string;
-  cardNumber: string;
-  cvv: string;
-}
-
 interface FormErrors {
   name?: string;
   email?: string;

@@ -4,11 +4,6 @@ import Footer2 from "@/components/footer2";
 import { useToast } from "@/hooks/use-toast";
 import client from "../sanity";
 
-interface FormData {
-  email: string;
-  password: string;
-}
-
 interface FormErrors {
   email?: string;
   password?: string;
