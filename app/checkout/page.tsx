@@ -3,6 +3,30 @@ import React, { useState } from "react";
 import client from "../sanity"; // Import the sanity client
 import { useToast } from "@/hooks/use-toast";
 
+interface FormData {
+  name: string;
+  email: string;
+  address: string;
+  city: string;
+  zipcode: string;
+  country: string;
+  cardName: string;
+  cardNumber: string;
+  cvv: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  address?: string;
+  city?: string;
+  zipcode?: string;
+  country?: string;
+  cardName?: string;
+  cardNumber?: string;
+  cvv?: string;
+}
+
 const CheckoutForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -16,7 +40,7 @@ const CheckoutForm = () => {
     cvv: "",
   });
 
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const { toast } = useToast();
 
   const validateEmail = (email: string): boolean => {
@@ -64,7 +88,7 @@ const CheckoutForm = () => {
   // Submit form data to Sanity
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formErrors: any = {};
+    const formErrors: FormErrors = {};
 
     if (!formData.name) formErrors.name = "Full Name is required.";
     if (!validateEmail(formData.email))

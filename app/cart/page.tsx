@@ -26,22 +26,6 @@ const Page = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const addToCart = (product: CartProduct) => {
-    setCart((prevCart) => {
-      const productIndex = prevCart.findIndex((item) => item.id === product.id);
-      let updatedCart;
-      if (productIndex > -1) {
-        updatedCart = [...prevCart];
-        updatedCart[productIndex].quantity += 1;
-      } else {
-        updatedCart = [...prevCart, { ...product, quantity: 1 }];
-      }
-
-      updateLocalStorage(updatedCart);
-      return updatedCart;
-    });
-  };
-
   const removeFromCart = (productId: string) => {
     setCart((prevCart) => {
       const updatedCart = prevCart.filter(
