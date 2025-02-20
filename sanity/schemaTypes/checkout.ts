@@ -13,5 +13,21 @@ export default {
     { name: "cardNumber", title: "Card Number", type: "string" },
     { name: "expirationDate", title: "Expiration Date", type: "string" },
     { name: "cvv", title: "CVV", type: "string" },
+    {
+      name: "products",
+      title: "Products",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: 'id', title: 'Product ID', type: 'string' },
+            { name: "name", title: "Name", type: "string" },
+            { name: "quantity", title: "Quantity", type: "number" }
+          ]
+        }
+      ]
+    }
+    
   ],
 };

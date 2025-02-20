@@ -17,6 +17,7 @@
     "@radix-ui/react-tooltip": "^1.1.6",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.70.0",
+    "bcryptjs": "^3.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
@@ -28,9 +29,11 @@
     "sanity": "^3.70.0",
     "styled-components": "^6.1.14",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

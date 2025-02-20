@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import client from "../sanity"; // Import the sanity client
 import { useToast } from "@/hooks/use-toast";
+import { v4 as uuidv4 } from 'uuid';
 
 interface FormErrors {
   name?: string;
@@ -14,6 +15,14 @@ interface FormErrors {
   cardNumber?: string;
   cvv?: string;
 }
+type CartProduct = {
+  _id: string;
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+};
 
 const CheckoutForm = () => {
   const [formData, setFormData] = useState({
@@ -30,19 +39,30 @@ const CheckoutForm = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const { toast } = useToast();
+  const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
 
+  useEffect(() => {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        setCartProducts(JSON.parse(storedCart));
+      }
+  }, []);
+  
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return emailRegex.test(email);
   };
 
   const validatePostalCode = (zipcode: string, country: string): boolean => {
-    if (country === "us") {
-      return /^\d{5}(-\d{4})?$/.test(zipcode); // US ZIP Code validation
+    // Check if the country is Pakistan (case-insensitive)
+    if (/^pakistan$/i.test(country)) {
+      return /^\d{5}$/.test(zipcode); // Pakistan postal code validation (5 digits)
     }
-    return /^\d{5,6}$/.test(zipcode); // Other countries can be adjusted here
+    
+    // If the country is not Pakistan, return false (no validation for other countries)
+    return false;
   };
-
+  
   const validateCardNumber = (cardNumber: string): boolean => {
     // Luhn Algorithm to validate card number
     let sum = 0;
@@ -89,6 +109,7 @@ const CheckoutForm = () => {
       formErrors.cardNumber = "Invalid card number.";
     if (!validateCVV(formData.cvv)) formErrors.cvv = "Invalid CVV code.";
 
+
     if (Object.keys(formErrors).length === 0) {
       const document = {
         _type: "checkout",
@@ -101,6 +122,12 @@ const CheckoutForm = () => {
         cardholderName: formData.cardName,
         cardNumber: formData.cardNumber,
         cvv: formData.cvv,
+        products: cartProducts.map((product) => ({
+          _key: uuidv4(),
+          id: product.id,
+          name: product.name,
+          quantity: product.quantity,
+        })),
       };
 
       try {

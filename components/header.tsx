@@ -59,7 +59,7 @@ const header = () => {
       xs:items-center xs:w-full"
       >
         <div className="w-[215px] h-7 flex justify-between items-center cursor-pointer">
-          <Link href={"/account"}>
+          <Link href={"/signup"}>
             <Image
               src={"/images/user.png"}
               alt="user"
